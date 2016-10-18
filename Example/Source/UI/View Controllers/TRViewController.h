@@ -14,6 +14,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QViewController : UIViewController
+@interface TRViewController : UIViewController
 
 @end

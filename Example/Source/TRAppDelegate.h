@@ -14,15 +14,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "QAppDelegate.h"
-#import "QTouchposeApplication.h"
+@class TRViewController;
 
-int main(int argc, char *argv[])
-{
-    @autoreleasepool
-    {
-        return UIApplicationMain(argc, argv,
-                                 NSStringFromClass([QTouchposeApplication class]),
-                                 NSStringFromClass([QAppDelegate class]));
-    }
-}
+@interface TRAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) TRViewController *viewController;
+
+@end

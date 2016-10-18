@@ -1,4 +1,4 @@
-// Copyright 2012 Todd Reed
+// Copyright 2014 Todd Reed
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,24 @@
 
 
 #import <UIKit/UIKit.h>
+#import "TRTouchposeTouchView.h"
 
-@interface QTouchposeApplication : UIApplication
 
-@property (nonatomic) BOOL showTouches;
-@property (nonatomic) BOOL alwaysShowTouches;
-@property (nonatomic) BOOL showTouchesWhenKeyboardShown;
+@interface TRTouchposeImageTouchViewFactory: NSObject <TRTouchposeTouchViewFactory>
+
+@property (nonatomic, strong) UIImage *touchImage;
+@property (nonatomic) CGPoint offset;
 @property (nonatomic) CGFloat touchEndAnimationDuration;
-@property (nonatomic) CATransform3D touchEndTransform;
-@property (nonatomic, strong) UIColor *touchColor;
 
-@property (nonatomic) UIImage *customTouchImage;
-@property (nonatomic) CGPoint customTouchPoint;
+@end
+
+
+@interface TRTouchposeImageTouchView : UIView <TRTouchposeTouchView>
+
+- (instancetype)initWithPoint:(CGPoint)point
+                   touchImage:(UIImage *)touchImage
+                       offset:(CGPoint)offset;
+
+@property (nonatomic) CGFloat touchEndAnimationDuration;
 
 @end

@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "QAppDelegate.h"
-#import "QViewController.h"
-#import "QTouchposeApplication.h"
+#import <Touchpose/TRTouchposeApplication.h>
+#import <Touchpose/TRTouchposeImageTouchView.h>
 
-@implementation QAppDelegate
+#import "TRAppDelegate.h"
+#import "TRViewController.h"
+
+@implementation TRAppDelegate
 
 #pragma mark UIApplicationDelegate
 
@@ -24,27 +26,25 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.viewController = [[QViewController alloc] initWithNibName:nil bundle:nil];
+    self.viewController = [[TRViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
     // For demo purposes, show the touches even when not mirroring to an external display.
-    QTouchposeApplication *touchposeApplication = (QTouchposeApplication *)application;
-    touchposeApplication.alwaysShowTouches = YES;
+    TRTouchposeApplication *touchposeApplication = (TRTouchposeApplication *)application;
+    touchposeApplication.showTouches = YES;
 
-    // Examples of customizing the color and touch-end animation:
-    //
-    // touchposeApplication.touchColor = [UIColor redColor];
-    // touchposeApplication.touchEndAnimationDuration = 0.3f;
-    // touchposeApplication.touchEndTransform = CATransform3DMakeScale(0.1, 0.1, 1);
-    
-    // Example of adding your own custom image
-    // "customTouchPoint" is a point relative to the image (upper-left corner = 0,0) indicating the desired touch point of the cursor
-    //
-    // touchposeApplication.customTouchImage = [UIImage imageNamed:@"<my_custom_image.png>"];
-    // touchposeApplication.customTouchPoint = CGPointMake(214, 148);
+#if 0
+    // Example of customizing the "touch"
+
+    TRTouchposeImageTouchViewFactory *touchViewFactory = [[TRTouchposeImageTouchViewFactory alloc] init];
+    touchViewFactory.touchImage = [UIImage imageNamed:@"Finger"];
+    touchViewFactory.offset = CGPointMake(52, 43);
+    touchposeApplication.touchViewFactory = touchViewFactory;
+#endif
 
     return YES;
+
 }
 
 @end
